@@ -1,0 +1,39 @@
+======================================================================
+WeddingLens - Model Summary (Phase 2 complete)
+======================================================================
+
+Training:
+  Architecture: EfficientNet-B3 (ImageNet pretrained) + GlobalAveragePooling2D + Dropout(0.3) + Dense(6, softmax)
+  Total epochs run: 20 (Phase A: frozen base, Phase B: fine-tuned last 30 layers)
+  Best epoch (lowest val_loss): 19
+  Best validation accuracy: 0.4888
+  Best validation loss: 1.3729
+  Hardware: CPU only (no native TensorFlow GPU support on Windows for TF >= 2.11)
+
+Test set evaluation:
+  Test set size: 179 images
+  Test accuracy: 0.5531
+
+Per-class F1 scores (from evaluation_report.txt classification report):
+  boho_chic              F1=0.4746
+  garden_floral          F1=0.6575
+  luxury_glamour         F1=0.4727
+  minimalist_modern      F1=0.4815
+  rustic_barn            F1=0.5882
+  traditional_classic    F1=0.6061
+
+Output files:
+  Trained model:      C:\Users\SASANDINIE\OneDrive\Desktop\WeddingLens\ml-service\models\weddinglens_effnetb3.keras
+  Training curves:    C:\Users\SASANDINIE\OneDrive\Desktop\WeddingLens\ml-service\models\training_curves.png
+  Confusion matrix:   C:\Users\SASANDINIE\OneDrive\Desktop\WeddingLens\ml-service\models\confusion_matrix.png
+  Evaluation report:  C:\Users\SASANDINIE\OneDrive\Desktop\WeddingLens\ml-service\models\evaluation_report.txt
+  Grad-CAM examples:  C:\Users\SASANDINIE\OneDrive\Desktop\WeddingLens\ml-service\models\gradcam_examples
+
+Known limitations (for dissertation methodology/limitations discussion):
+  - Trained on CPU only (no native Windows GPU support for TF >= 2.11), which
+    limited practical epoch count/dataset size for this project's timeframe.
+  - Dataset is modest in size (~137-140 images/class in training), which limits
+    how well the model generalises versus a production-scale dataset.
+  - Some style categories are visually similar (e.g. boho_chic vs traditional_classic,
+    luxury_glamour vs minimalist_modern per the confusion matrix), which is a
+    genuine ambiguity in the problem domain, not purely a model shortcoming.

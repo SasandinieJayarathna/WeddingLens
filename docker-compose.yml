@@ -1,0 +1,114 @@
+# WeddingLens - full-stack Docker Compose setup.
+#
+# In plain terms: one command that starts the whole app - database, backend,
+# and frontend all together, each in its own box, already wired up to talk
+# to each other.
+#
+# Brings up all 3 services: PostgreSQL (db), the Node/Express backend (which
+# also runs the Python/TensorFlow prediction script as a subprocess INSIDE its
+# own container - see backend/Dockerfile), and the React frontend (built at
+# image-build time, served via nginx).
+#
+# Quick start:
+#   1. cp .env.example .env        (fill in a real DB_PASSWORD and JWT_SECRET)
+#   2. docker compose up --build   (first run: downloads TensorFlow etc. -
+#                                    can take several minutes)
+#   3. open http://localhost:5173
+#
+# Build-verified live (2026-08-25): all 3 containers built and started
+# cleanly, and a real end-to-end request path was confirmed - health check,
+# real vendor data including all 180 vendors' actual supplied photos, an
+# actual photo prediction (classification + colour palette + Grad-CAM
+# heatmap, logged to the containerized database), and the frontend's
+# client-side routing all worked. See CLAUDE.md's Docker section and
+# docs/03_methodology.md §3.5.2 for the full write-up.
+#
+# The `db` service below deliberately does NOT publish a host port, so it
+# never collides with a native PostgreSQL install on the usual 5432 (see that
+# service's own comment). If you want direct `psql`/GUI access to the
+# containerized database, see docker-compose.override.yml, which adds an
+# optional mapping on a different port (5433) for exactly that.
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: weddinglens
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Postgres's official image auto-runs any .sql file placed here, in
+      # filename order, but ONLY the very first time a container starts
+      # against an empty data directory - so the schema + real Sri Lankan
+      # vendor seed data are ready with no manual `psql` step.
+      - ./backend/db/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./backend/db/seed.sql:/docker-entrypoint-initdb.d/02_seed.sql:ro
+    # No host port published here on purpose - the backend container reaches
+    # this over Docker's internal network (DB_HOST=db) regardless, and NOT
+    # publishing a host port means this never collides with a native
+    # PostgreSQL install using the default 5432 (common on a dev machine -
+    # see CLAUDE.md). If you want direct `psql`/GUI access to the
+    # containerized database, add a docker-compose.override.yml with your
+    # own port mapping (Compose merges `ports` lists ADDITIVELY across
+    # files, not by replacing - so pick a port that isn't already used
+    # rather than reusing 5432 here, or you'll get the same collision this
+    # comment is warning about).
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PORT: 5000
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: weddinglens
+      DB_USER: postgres
+      DB_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET in .env}
+      MAX_UPLOAD_BYTES: 5242880
+    volumes:
+      # Named volume, not a bind mount: uploaded photos + their Grad-CAM
+      # overlays persist across container restarts/rebuilds without being
+      # baked into the image or cluttering the host checkout.
+      - backend_uploads:/app/backend/uploads
+    ports:
+      - "5000:5000"
+
+  frontend:
+    # Publishes host port 5173 - the same default port Vite's own `npm run dev`
+    # server uses - and restarts automatically (see below). Don't run this
+    # alongside the native/manual dev setup at the same time: leftover containers
+    # can come back up on their own (e.g. after a Docker Desktop restart) and
+    # silently collide with a native dev server already on :5173. Run
+    # `docker compose down` before starting native dev, or vice versa.
+    build:
+      context: ./frontend
+      args:
+        # Baked in at BUILD time (Vite inlines env vars into the JS bundle -
+        # see frontend/Dockerfile). This is the URL the user's BROWSER calls,
+        # so it must be the backend's host-published port (localhost:5000),
+        # not the internal Docker service name `backend` - the frontend
+        # container's own network namespace isn't where these requests come
+        # from, the viewer's browser is.
+        VITE_API_BASE_URL: http://localhost:5000
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+
+volumes:
+  pgdata:
+  backend_uploads:

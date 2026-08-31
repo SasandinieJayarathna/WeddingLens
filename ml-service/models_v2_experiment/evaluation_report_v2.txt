@@ -1,0 +1,18 @@
+WeddingLens - Test Set Evaluation Report
+==================================================
+Test set size: 179 images
+Test accuracy: 0.5363
+
+Classification report (precision / recall / f1-score per class):
+                     precision    recall  f1-score   support
+
+          boho_chic     0.4722    0.5667    0.5152        30
+      garden_floral     0.7083    0.5667    0.6296        30
+     luxury_glamour     0.3235    0.3667    0.3438        30
+  minimalist_modern     0.4545    0.5172    0.4839        29
+        rustic_barn     0.6000    0.6000    0.6000        30
+traditional_classic     0.8182    0.6000    0.6923        30
+
+           accuracy                         0.5363       179
+          macro avg     0.5628    0.5362    0.5441       179
+       weighted avg     0.5634    0.5363    0.5445       179

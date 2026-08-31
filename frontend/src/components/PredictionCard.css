@@ -1,0 +1,136 @@
+.prediction-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.prediction-card-title {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+.prediction-card-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.prediction-card-images figure {
+  margin: 0;
+}
+
+.prediction-card-images img {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.4rem;
+}
+
+.prediction-card-images figcaption {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.prediction-style-name {
+  margin-bottom: 0;
+  font-size: 1.4rem;
+}
+
+.prediction-confidence {
+  margin-bottom: 0;
+  color: var(--color-text-muted);
+}
+
+.style-dashboard {
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.9rem 0;
+}
+
+.palette-caption {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  margin: 0 0 0.4rem;
+}
+
+.style-palette {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.palette-swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  display: inline-block;
+}
+
+.style-keywords {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0;
+  margin: 0 0 0.6rem 0;
+}
+
+.style-keywords li {
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  font-size: 0.8rem;
+  padding: 0.25em 0.7em;
+  border-radius: 999px;
+}
+
+.decor-suggestion {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.score-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.score-row {
+  display: grid;
+  grid-template-columns: 130px 1fr 3ch;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.score-label {
+  font-size: 0.85rem;
+  color: var(--color-text);
+}
+
+.score-bar-track {
+  background: var(--color-border);
+  border-radius: 999px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  background: var(--color-primary);
+  height: 100%;
+  border-radius: 999px;
+}
+
+.score-value {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-align: right;
+}
+
+.prediction-card .btn {
+  align-self: flex-start;
+}
+
+.prediction-card-error {
+  justify-content: center;
+}

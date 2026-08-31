@@ -1,0 +1,22 @@
+======================================================================
+WeddingLens - Dataset Summary (Phase 1 complete)
+======================================================================
+
+Total raw images collected : 837
+Total after cleaning       : 800
+Removed (corrupt/small/dup): 37
+Retention rate              : 95.6%
+
+Per-category breakdown:
+Category                  Raw  Cleaned   Train   Val  Test
+indian_influenced         200      200     140    30    30
+modern_fusion             200      197     137    30    30
+sinhala_kandyan            37       37      25     6     6
+tamil_hindu_traditional    200      200     140    30    30
+western_white             200      166     116    25    25
+
+Final split totals: train=558  val=121  test=121
+
+Split method: scikit-learn train_test_split, random_state=42, ratios 70/15/15
+Cleaning method: Pillow validity check, min size 200x200, perceptual-hash
+                 near-duplicate removal (imagehash.phash, threshold=5)

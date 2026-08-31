@@ -1,0 +1,136 @@
+.dashboard-hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.dashboard-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.4rem;
+}
+
+.dashboard-hero h1 {
+  color: #fff;
+  margin-bottom: 0.4rem;
+  font-size: 1.9rem;
+}
+
+.dashboard-hero-copy {
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 460px;
+  margin-bottom: 0;
+}
+
+.dashboard-hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  min-width: 200px;
+}
+
+/* Qualified with .dashboard-hero-actions (not just .dashboard-hero-btn
+   alone) - see LandingPage.css's identical fix for why: the global .btn
+   rule also sets `color`, and equal-specificity single-class selectors
+   resolve by stylesheet order, not intent, which can silently ship
+   invisible white-on-white button text. */
+.dashboard-hero-actions .dashboard-hero-btn {
+  background: #fff;
+  color: var(--color-primary-dark);
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+.dashboard-hero-actions .dashboard-hero-btn:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+
+.dashboard-hero-actions .dashboard-hero-btn-secondary {
+  text-align: center;
+  border-color: rgba(255, 255, 255, 0.7);
+  color: #fff;
+}
+
+.dashboard-hero-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.board-heading {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.board-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.board-card-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.board-card-body {
+  padding: 1rem 1.1rem 1.1rem;
+}
+
+.board-card-body h3 {
+  margin-bottom: 0.2rem;
+  font-size: 1.05rem;
+}
+
+.board-card-meta {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .dashboard-hero {
+    padding: 1.75rem 1.25rem;
+  }
+  .dashboard-hero-actions {
+    width: 100%;
+  }
+}

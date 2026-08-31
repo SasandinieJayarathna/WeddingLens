@@ -1,0 +1,74 @@
+.compare-page h1 {
+  font-size: 2rem;
+}
+
+.compare-upload-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.compare-slot h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.compare-dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  cursor: pointer;
+  text-align: center;
+  padding: 1rem;
+}
+
+.compare-dropzone:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.compare-placeholder {
+  color: var(--color-text-muted);
+}
+
+.compare-preview {
+  max-height: 180px;
+  border-radius: var(--radius-sm);
+  object-fit: contain;
+}
+
+.compare-filename {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-top: 0.4rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.loading-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  color: var(--color-text-muted);
+}
+
+.compare-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  align-items: start;
+}

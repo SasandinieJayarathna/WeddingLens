@@ -1,0 +1,15 @@
+# WeddingLens ML pipeline dependencies
+# Phase 1 — dataset collection / cleaning / splitting
+requests
+python-dotenv
+pillow
+imagehash
+numpy
+pandas
+scikit-learn
+matplotlib
+
+# Phase 2 — model training / evaluation / Grad-CAM
+tensorflow
+opencv-python
+seaborn

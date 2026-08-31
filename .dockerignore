@@ -1,0 +1,35 @@
+# Applies to the backend image's build context (repo root - see
+# docker-compose.yml, backend needs both backend/ and ml-service/ available to
+# COPY from). Keeps the build context small and avoids baking host-specific
+# files (node_modules built for Windows, local venvs, etc.) into the image.
+
+.git
+.claude
+.vscode
+
+# Backend - node_modules/.env are installed/generated fresh by the image build;
+# uploads/ is runtime data, not a build input.
+backend/node_modules
+backend/.env
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Frontend has its own separate build context (frontend/Dockerfile) and isn't
+# needed at all for the backend image.
+frontend/node_modules
+frontend/dist
+frontend/.env
+
+# ml-service - only requirements.txt/scripts/models are actually needed to
+# SERVE a prediction; the training data/notebooks/experiment folders are large
+# and irrelevant at runtime.
+ml-service/venv
+ml-service/data
+ml-service/notebooks
+ml-service/models_v1_backup
+ml-service/models_v2_experiment
+ml-service/.env
+ml-service/__pycache__
+ml-service/scripts/__pycache__
+
+docs

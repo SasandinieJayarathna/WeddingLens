@@ -1,0 +1,42 @@
+======================================================================
+WeddingLens - Model Summary (Phase 2 complete)
+======================================================================
+
+Training:
+  Classes (5): indian_influenced, modern_fusion, sinhala_kandyan, tamil_hindu_traditional, western_white
+  Architecture: EfficientNet-B3 (ImageNet pretrained) + GlobalAveragePooling2D + Dropout(0.3) + Dense(5, softmax)
+  Total epochs run: 22 (Phase A: frozen base, Phase B: fine-tuned last 30 layers)
+  Best epoch (lowest val_loss): 14
+  Best validation accuracy: 0.5537
+  Best validation loss: 1.1541
+  Hardware: CPU only (no native TensorFlow GPU support on Windows for TF >= 2.11)
+
+Test set evaluation:
+  Test set size: 121 images
+  Test accuracy: 0.5207
+
+Per-class F1 scores (from evaluation_report.txt classification report):
+  indian_influenced      F1=0.4688
+  modern_fusion          F1=0.5882
+  sinhala_kandyan        F1=0.0000
+  tamil_hindu_traditional F1=0.4561
+  western_white          F1=0.6383
+
+Output files:
+  Trained model:      C:\Users\SASANDINIE\OneDrive\Desktop\WeddingLens\ml-service\models\weddinglens_effnetb3.keras
+  Training curves:    C:\Users\SASANDINIE\OneDrive\Desktop\WeddingLens\ml-service\models\training_curves.png
+  Confusion matrix:   C:\Users\SASANDINIE\OneDrive\Desktop\WeddingLens\ml-service\models\confusion_matrix.png
+  Evaluation report:  C:\Users\SASANDINIE\OneDrive\Desktop\WeddingLens\ml-service\models\evaluation_report.txt
+  Grad-CAM examples:  C:\Users\SASANDINIE\OneDrive\Desktop\WeddingLens\ml-service\models\gradcam_examples
+
+Known limitations (for dissertation methodology/limitations discussion):
+  - Trained on CPU only (no native Windows GPU support for TF >= 2.11), which
+    limited practical epoch count/dataset size for this project's timeframe.
+  - Dataset size varies significantly by class - see the per-category training
+    counts in dataset_summary.txt (one class in particular may have far fewer
+    real images than the others, which the evaluation report's per-class F1
+    below will make visible - this is reported honestly, not smoothed over).
+  - See the confusion matrix (confusion_matrix.png) for which specific style
+    pairs this model confuses most - visually/culturally similar styles are
+    expected to show some genuine, irreducible confusion regardless of dataset
+    size, not purely a model shortcoming.

@@ -1,0 +1,13 @@
+# Root-level secrets and machine-specific overrides. backend/.gitignore and
+# ml-service/.gitignore separately ignore their own .env files - this covers
+# the root .env used by docker-compose.yml (see .env.example).
+.env
+docker-compose.override.yml
+
+# OS/editor cruft
+.DS_Store
+Thumbs.db
+
+# Claude Code machine-local session state - not meaningful outside this machine
+.claude/settings.local.json
+.claude/scheduled_tasks.lock

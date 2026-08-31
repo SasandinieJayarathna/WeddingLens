@@ -1,0 +1,41 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1787650073.628143    3112 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1787650077.429392    3112 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+======================================================================
+WeddingLens - Model Evaluation (Phase 2, Step 3)
+======================================================================
+Found 179 files belonging to 6 classes.
+I0000 00:00:1787650078.546666    3112 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING:tensorflow:TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+Loading model from C:\Users\SASANDINIE\OneDrive\Desktop\WeddingLens\ml-service\models\weddinglens_effnetb3.keras ...
+Running predictions on the test set...
+
+[1m1/6[0m [32m===[0m[37m=================[0m [1m31s[0m 6s/step
+[1m2/6[0m [32m======[0m[37m==============[0m [1m7s[0m 2s/step 
+[1m3/6[0m [32m==========[0m[37m==========[0m [1m5s[0m 2s/step
+[1m4/6[0m [32m=============[0m[37m=======[0m [1m3s[0m 2s/step
+[1m5/6[0m [32m================[0m[37m====[0m [1m1s[0m 2s/step
+[1m6/6[0m [32m====================[0m[37m[0m [1m0s[0m 2s/step
+[1m6/6[0m [32m====================[0m[37m[0m [1m18s[0m 2s/step
+
+Test accuracy: 0.5363
+
+Classification report:
+                     precision    recall  f1-score   support
+
+          boho_chic     0.4722    0.5667    0.5152        30
+      garden_floral     0.7083    0.5667    0.6296        30
+     luxury_glamour     0.3235    0.3667    0.3438        30
+  minimalist_modern     0.4545    0.5172    0.4839        29
+        rustic_barn     0.6000    0.6000    0.6000        30
+traditional_classic     0.8182    0.6000    0.6923        30
+
+           accuracy                         0.5363       179
+          macro avg     0.5628    0.5362    0.5441       179
+       weighted avg     0.5634    0.5363    0.5445       179
+
+
+Confusion matrix saved to: C:\Users\SASANDINIE\OneDrive\Desktop\WeddingLens\ml-service\models\confusion_matrix.png
+Full report saved to: C:\Users\SASANDINIE\OneDrive\Desktop\WeddingLens\ml-service\models\evaluation_report.txt

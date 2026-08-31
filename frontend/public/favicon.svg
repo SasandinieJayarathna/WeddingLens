@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- WeddingLens favicon: a bolder, simplified version of the wreath-ringed
+       "W | L" monogram in components/Logo.jsx (fewer, larger leaves and no
+       fine sprig - too thin to read at a 16-32px tab-icon size). Leaf
+       positions are 16 evenly-spaced points around a circle (tangential
+       rotation), matching the same trig used in Logo.jsx's WreathRing so
+       both stay visually consistent. Keep in sync if the mark changes. -->
+  <circle cx="32" cy="32" r="31" fill="#fdf8f6"/>
+  <g fill="#7a414a" opacity="0.6">
+    <ellipse cx="59" cy="32" rx="3.6" ry="1.4" transform="rotate(90 59 32)"/>
+    <ellipse cx="56.95" cy="42.33" rx="3.6" ry="1.4" transform="rotate(112.5 56.95 42.33)"/>
+    <ellipse cx="51.09" cy="51.09" rx="3.6" ry="1.4" transform="rotate(135 51.09 51.09)"/>
+    <ellipse cx="42.33" cy="56.95" rx="3.6" ry="1.4" transform="rotate(157.5 42.33 56.95)"/>
+    <ellipse cx="32" cy="59" rx="3.6" ry="1.4" transform="rotate(180 32 59)"/>
+    <ellipse cx="21.67" cy="56.95" rx="3.6" ry="1.4" transform="rotate(202.5 21.67 56.95)"/>
+    <ellipse cx="12.91" cy="51.09" rx="3.6" ry="1.4" transform="rotate(225 12.91 51.09)"/>
+    <ellipse cx="7.05" cy="42.33" rx="3.6" ry="1.4" transform="rotate(247.5 7.05 42.33)"/>
+    <ellipse cx="5" cy="32" rx="3.6" ry="1.4" transform="rotate(270 5 32)"/>
+    <ellipse cx="7.05" cy="21.67" rx="3.6" ry="1.4" transform="rotate(292.5 7.05 21.67)"/>
+    <ellipse cx="12.91" cy="12.91" rx="3.6" ry="1.4" transform="rotate(315 12.91 12.91)"/>
+    <ellipse cx="21.67" cy="7.05" rx="3.6" ry="1.4" transform="rotate(337.5 21.67 7.05)"/>
+    <ellipse cx="32" cy="5" rx="3.6" ry="1.4" transform="rotate(0 32 5)"/>
+    <ellipse cx="42.33" cy="7.05" rx="3.6" ry="1.4" transform="rotate(22.5 42.33 7.05)"/>
+    <ellipse cx="51.09" cy="12.91" rx="3.6" ry="1.4" transform="rotate(45 51.09 12.91)"/>
+    <ellipse cx="56.95" cy="21.67" rx="3.6" ry="1.4" transform="rotate(67.5 56.95 21.67)"/>
+  </g>
+  <text x="29" y="41" text-anchor="end" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-size="25" font-weight="700" fill="#7a414a">W</text>
+  <text x="35" y="41" text-anchor="start" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-size="25" font-weight="700" fill="#7a414a">L</text>
+  <line x1="32" y1="17" x2="32" y2="43" stroke="#7a414a" stroke-width="1.2" opacity="0.8"/>
+</svg>

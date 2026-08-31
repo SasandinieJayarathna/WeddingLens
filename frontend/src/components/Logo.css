@@ -1,0 +1,14 @@
+.logo-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.logo-wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1;
+  /* Deliberately no color here - inherits from whatever wraps a <Logo>
+     (.navbar-brand, .landing-brand, .auth-brand-mark, ...) so the same
+     component works on both light and dark backgrounds. */
+}

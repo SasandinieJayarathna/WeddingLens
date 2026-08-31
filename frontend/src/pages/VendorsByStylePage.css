@@ -1,0 +1,31 @@
+.vendors-by-style-page h1 {
+  font-size: 1.8rem;
+}
+
+.vendor-category-section {
+  margin-top: 2rem;
+}
+
+.vendor-category-section h2 {
+  font-size: 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.vendor-category-section .vendor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.photo-credits {
+  margin-top: 2rem;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.photo-credits a {
+  color: var(--color-text-muted);
+  text-decoration: underline;
+}

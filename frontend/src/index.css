@@ -1,0 +1,222 @@
+/* ============================================================================
+   WeddingLens design tokens
+   A soft, elegant palette appropriate for a wedding-tech product: warm ivory
+   background, a muted rose/mauve primary (echoes blush wedding tones without
+   being twee), and a sage-green accent for secondary actions/success states.
+   Every color used anywhere in the app should come from one of these
+   variables, so the palette stays consistent and is easy to retune later.
+   ============================================================================ */
+:root {
+  /* Brand palette
+     Contrast-checked against white (#fff) for WCAG AA (4.5:1 for normal
+     text): --color-primary and --color-accent-dark both clear ~5.6:1+.
+     The lighter tints (--color-primary-light, --color-accent) are for
+     backgrounds/borders/large decorative elements only - never for small
+     text on a light surface. */
+  --color-primary: #94525c; /* ~5.8:1 on white - buttons/links/small text */
+  --color-primary-dark: #7a414a; /* hover state, darker still */
+  --color-primary-light: #f3dfe2; /* tint for chips/backgrounds only */
+  --color-accent: #7c8b6f; /* ~3.6:1 on white - large text/icons/borders only */
+  --color-accent-dark: #5f6c55; /* ~5.6:1 on white - use for accent text */
+
+  /* Neutrals */
+  --color-bg: #fdf8f6;
+  --color-surface: #ffffff;
+  --color-border: #e8dfe1;
+  --color-text: #2f2a2c;
+  --color-text-muted: #6b6367;
+
+  /* Feedback */
+  --color-error: #b3261e;
+  --color-error-bg: #fbeceb;
+  --color-success: #3f6b3a;
+  --color-success-bg: #eaf3e8;
+
+  /* Layout */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --shadow-sm: 0 1px 3px rgba(47, 42, 44, 0.08);
+  --shadow-md: 0 8px 24px rgba(47, 42, 44, 0.10);
+  --shadow-lg: 0 20px 50px rgba(47, 42, 44, 0.16);
+  --max-width: 1140px;
+
+  /* Two-typeface system: an elegant serif for headings (evokes a wedding
+     invitation/stationery feel) and a clean, highly-readable sans for body
+     copy/UI chrome. Both loaded via Google Fonts in index.html, with a full
+     system-font fallback stack so the page still looks intentional if the
+     web font fails to load. */
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --gradient-hero: linear-gradient(135deg, #7a414a 0%, #94525c 45%, #b8788a 100%);
+
+  font-family: var(--font-body);
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  margin: 0 0 0.5em 0;
+}
+
+p {
+  margin: 0 0 1em 0;
+  color: var(--color-text-muted);
+}
+
+a {
+  color: var(--color-primary-dark);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Buttons - one consistent style used across every page */
+button,
+.btn {
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.7em 1.5em;
+  background: var(--color-primary);
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(122, 65, 74, 0.25);
+  transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+button:active:not(:disabled),
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:visited {
+  color: #fff;
+}
+
+button:hover,
+.btn:hover {
+  background: var(--color-primary-dark);
+}
+
+button:focus-visible,
+.btn:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+button:disabled {
+  background: var(--color-border);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-primary-dark);
+  border: 1.5px solid var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background: var(--color-primary-light);
+}
+
+/* Layout helpers reused across pages */
+.page-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+/* Applied to cards that benefit from feeling clickable/alive (vendor cards,
+   board cards) - a small lift on hover, not used on static content cards. */
+.card-hoverable:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* A warm, brand-gradient panel used for decorative surfaces (auth page side
+   panel, dashboard hero strip) - never for body text, always paired with
+   white/near-white text on top. */
+.gradient-panel {
+  background: var(--gradient-hero);
+  color: #fff;
+}
+
+.alert {
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+}
+
+.alert-error {
+  background: var(--color-error-bg);
+  color: var(--color-error);
+  border: 1px solid var(--color-error);
+}
+
+.alert-success {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
+}
+
+.spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid var(--color-primary-light);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .page-container {
+    padding: 1.25rem 1rem 3rem;
+  }
+}
